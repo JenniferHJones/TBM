@@ -1,7 +1,7 @@
 {
-  "name": "mern",
+  "name": "tbm",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project 3",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -21,8 +21,23 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "express": "^4.16.3",
-    "mongoose": "^5.3.16",
-    "if-env": "^1.0.4"
-  }
+    "bcrypt-nodejs": "0.0.3",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "if-env": "^1.0.4",
+    "mysql2": "^1.6.5",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.8.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JenniferHJones/TBM.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/JenniferHJones/TBM/issues"
+  },
+  "homepage": "https://github.com/JenniferHJones/TBM#readme"
 }
