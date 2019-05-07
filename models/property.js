@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    propertyOwner: {
+    companyName: {
       type: DataTypes.STRING,
       allowNull: false
     },
