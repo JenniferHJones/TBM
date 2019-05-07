@@ -1,4 +1,4 @@
 -- Drops the blogger if it exists currently --
-DROP DATABASE IF EXISTS blogger;
--- Creates the "blogger" database --
-CREATE DATABASE blogger;
+DROP DATABASE IF EXISTS tbm_db;
+-- Creates the "tbm_db" database --
+CREATE DATABASE tbm_db;
