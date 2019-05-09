@@ -17,9 +17,16 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 40]
       }
     },
-    account: {
+    userType: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [4]
+      }
     },
     email: {
       type: DataTypes.STRING,
