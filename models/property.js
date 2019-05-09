@@ -12,10 +12,24 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    type: {
+    propertyType: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    leased: {
+      type: BOOLEAN,
+      allowNull: false
+
     }
   });
+
+  Property.associate = function (models) {
+    Property.belongsTo(models.Customer, {
+      foreignKey: {
+        allowNull: false,
+      }
+    });
+    Porperty.hasMany(models.Listing);
+  };
   return Property;
 };
