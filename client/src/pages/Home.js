@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import API from '../utils/API';
+import API from "../utils/API";
 // import { Link } from 'react-router-dom';
-import RandomHomeComponent from '../components/RandomHomeComponent';
+import RandomHomeComponent from "../components/RandomHomeComponent";
+import Jumbotron from "../components/Jumbotron/Jumbotron";
 
 class Home extends Component {
   state = {
     posts: [],
-    title: '',
-    body: '',
-    category: '',
+    title: "",
+    body: "",
+    category: ""
   };
 
   componentDidMount() {
@@ -19,7 +20,7 @@ class Home extends Component {
   loadPosts = () => {
     API.getPosts()
       .then(res =>
-        this.setState({ posts: res.data, title: '', author: '', synopsis: '' })
+        this.setState({ posts: res.data, title: "", author: "", synopsis: "" })
       )
       .catch(err => console.log(err));
   };
@@ -30,7 +31,7 @@ class Home extends Component {
     API.createPost({
       title: this.state.title,
       body: this.state.body,
-      category: this.state.category,
+      category: this.state.category
     }).then(() =>
       this.setState({
         posts: [
@@ -38,14 +39,15 @@ class Home extends Component {
           {
             title: this.state.title,
             body: this.state.body,
-            category: this.state.category,
-          },
-        ],
+            category: this.state.category
+          }
+        ]
       })
     );
   render() {
     return (
       <div>
+        <Jumbotron />
         {JSON.stringify(this.state.posts)}
         <RandomHomeComponent />
         <div>
@@ -53,19 +55,19 @@ class Home extends Component {
             type="text"
             value={this.state.title}
             label="title"
-            onChange={this.onChange('title')}
+            onChange={this.onChange("title")}
           />
           <input
             type="text"
             value={this.state.body}
             label="body"
-            onChange={this.onChange('body')}
+            onChange={this.onChange("body")}
           />
           <input
             type="text"
             value={this.state.category}
             label="category"
-            onChange={this.onChange('category')}
+            onChange={this.onChange("category")}
           />
           <button onClick={this.onClick}>Create</button>
         </div>

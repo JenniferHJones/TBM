@@ -4,24 +4,29 @@
 // ******************************************************************************
 // *** Dependencies
 // =============================================================
-var express = require('express');
-const routes = require('./routes');
+const express = require("express");
+const routes = require("./routes");
 
 // Sets up the Express App
 // =============================================================
-var app = express();
-var PORT = process.env.PORT || 3001;
+const app = express();
+const PORT = process.env.PORT || 3001;
 
-// Requiring our models for syncing
-var db = require('./models');
+// Requiring passport as configured
+// const passport = require("./config/passport");
+
+// app.use(passport.initialize());
+
+// Requiring models for syncing
+const db = require("./models");
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 }
 // Add routes, both API and view
 app.use(routes);
@@ -30,6 +35,6 @@ app.use(routes);
 // =============================================================
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
-    console.log('App listening on PORT ' + PORT);
+    console.log("App listening on PORT " + PORT);
   });
 });
