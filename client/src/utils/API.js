@@ -1,13 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   // Gets all posts
   getPosts: function() {
-    return axios.get('/api/posts');
+    return axios.get("/api/posts");
   },
   createPost: function(data) {
-    return axios.post('/api/posts', data);
+    return axios.post("/api/posts", data);
   },
+  register: function(data) {
+    return axios.post("/api/customer/register", data);
+  },
+  validateToken: function(token) {
+    return axios.post("/api/customer/validate", { token: token });
+  }
   // // Gets the book with the given id
   // getBook: function(id) {
   //   return axios.get("/api/books/" + id);

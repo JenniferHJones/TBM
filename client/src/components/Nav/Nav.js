@@ -1,14 +1,14 @@
 import React from "react";
-// import SignInModal from "../SignInModal/SignInModal";
+import icon from "../../images/icon.png";
+import { Link } from "react-router-dom";
 import "./nav.css";
 
 function Nav() {
   return (
     <>
       <nav className="navbar navbar-expand-lg">
-        <a className="navbar-brand" href="/">
-          Tower Bridge Management
-        </a>
+        <img src={icon} alt="small bridge" />
+        <div className="navbar-brand ml-3">TBM</div>
         <button
           className="navbar-toggler"
           type="button"
@@ -23,25 +23,40 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <a className="nav-link" href="#">
-                Home <span className="sr-only">(current)</span>
-              </a>
+              <Link to="/">
+                <a className="nav-link ml-5">
+                  Home <span className="sr-only">(current)</span>
+                </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link ml-5" href="#">
                 Features
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link ml-5" href="#">
                 Pricing
               </a>
             </li>
           </ul>
           <form className="form-inline">
-            <button className="btn btn-outline-secondary" type="button">
-              Sign In
-            </button>
+            <Link to="/Register">
+              <button
+                className="btn btn-lg btn-outline-danger mr-5 register"
+                type="button"
+              >
+                Register
+              </button>
+            </Link>
+            <Link to="/Login">
+              <button
+                className="btn btn-lg btn-outline-danger mr-5 signIn"
+                type="button"
+              >
+                Sign In
+              </button>
+            </Link>
           </form>
         </div>
       </nav>

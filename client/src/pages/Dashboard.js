@@ -5,7 +5,7 @@ import API from "../utils/API";
 import RandomHomeComponent from "../components/RandomHomeComponent";
 import Jumbotron from "../components/Jumbotron/Jumbotron";
 
-class Home extends Component {
+class Dashboard extends Component {
   state = {
     posts: [],
     title: "",
@@ -48,9 +48,34 @@ class Home extends Component {
     return (
       <>
         <Jumbotron />
+        <div>
+          {JSON.stringify(this.state.posts)}
+          <RandomHomeComponent />
+          <div>
+            <input
+              type="text"
+              value={this.state.title}
+              label="title"
+              onChange={this.onChange("title")}
+            />
+            <input
+              type="text"
+              value={this.state.body}
+              label="body"
+              onChange={this.onChange("body")}
+            />
+            <input
+              type="text"
+              value={this.state.category}
+              label="category"
+              onChange={this.onChange("category")}
+            />
+            <button onClick={this.onClick}>Create</button>
+          </div>
+        </div>
       </>
     );
   }
 }
 
-export default Home;
+export default Dashboard;

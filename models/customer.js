@@ -1,6 +1,3 @@
-// Requiring bcrypt for password hashing. Using the bcrypt-nodejs version as the regular bcrypt module
-// const bcrypt = require("bcrypt-nodejs");
-
 module.exports = function(sequelize, DataTypes) {
   const Customer = sequelize.define("Customer", {
     firstName: {
@@ -21,13 +18,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [4]
-      }
-    },
+    // username: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     len: [4]
+    //   }
+    // },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
