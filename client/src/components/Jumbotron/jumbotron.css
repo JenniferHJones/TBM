@@ -1,9 +1,13 @@
 .jumbotron {
-  /* background-color: black; */
-  /* color: red; */
   margin-bottom: 5px;
   padding-left: 0;
   padding-right: 0;
+  height: 400px;
+  background: url("../../images/Tower_Bridge.jpg");
+}
+
+.bridge {
+  background-size: cover;
 }
 
 .title {

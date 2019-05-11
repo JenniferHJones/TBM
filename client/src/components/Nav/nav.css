@@ -6,4 +6,13 @@ nav {
 
 .navbar-brand {
   color: white;
+  font-size: 35px;
+}
+
+a {
+  color: red;
+}
+
+a:hover {
+  color: white;
 }
