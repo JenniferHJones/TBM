@@ -1,14 +1,16 @@
 .jumbotron {
-  margin-bottom: 5px;
+  border-radius: 0;
+  /* margin-bottom: 5px; */
   padding-left: 0;
   padding-right: 0;
-  height: 400px;
-  background: url("../../images/Tower_Bridge.jpg");
+  height: 500px;
+  background-size: cover;
+  background-image: url("../../images/Tower_Bridge.jpg");
 }
 
-.bridge {
-  background-size: cover;
-}
+/* .bridge {
+  height: 100%;
+} */
 
 .title {
   margin-bottom: 20px;

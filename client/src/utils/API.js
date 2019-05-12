@@ -9,10 +9,13 @@ export default {
     return axios.post("/api/posts", data);
   },
   register: function(data) {
-    return axios.post("/api/customer/register", data);
+    return axios.post("/api/user/register", data);
+  },
+  login: function(data) {
+    return axios.post("/api/user/login", data);
   },
   validateToken: function(token) {
-    return axios.post("/api/customer/validate", { token: token });
+    return axios.post("/api/user/validate", { token: token });
   }
   // // Gets the book with the given id
   // getBook: function(id) {

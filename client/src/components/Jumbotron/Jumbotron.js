@@ -5,7 +5,7 @@ import img from "../../images/Tower_Bridge.jpg";
 
 function Jumbotron() {
   return (
-    <div className="jumbotron text-center" style={{ borderRadius: 0 }}>
+    <div className="jumbotron text-center">
       <div className="bridge" style={{ background: img }}>
         <h1 className="title">Tower Bridge Management</h1>
         <h4>

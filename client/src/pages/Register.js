@@ -13,16 +13,15 @@ class Register extends Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem("current_customer_token");
+    const token = localStorage.getItem("current_user_token");
     if (token) {
       API.validateToken(token)
         .then(() => this.props.history.push("/"))
-        .catch(() => localStorage.removeItem("current_customer_token"));
+        .catch(() => localStorage.removeItem("current_user_token"));
     }
   }
 
-  // need functions to validate these fileds
-
+  // need functions to validate these fields
   // validateEmail () {
   // }
 
@@ -33,9 +32,7 @@ class Register extends Component {
   onSubmit = e => {
     e.preventDefault();
     return API.register(this.state)
-      .then(res =>
-        localStorage.setItem("current_customer_token", res.data.token)
-      )
+      .then(res => localStorage.setItem("current_user_token", res.data.token))
       .catch(err => console.log(err));
   };
 
@@ -47,7 +44,7 @@ class Register extends Component {
         <h1 className="mb-5">Register</h1>
         <form>
           <div className="form-group mb-5 font-weight-bold">
-            <label for="inputFirstName">First Name</label>
+            <label htmlFor="inputFirstName">First Name</label>
             <input
               type="text"
               className="form-control"
@@ -59,7 +56,7 @@ class Register extends Component {
             />
           </div>
           <div className="form-group mb-5 font-weight-bold">
-            <label for="inputLastName">Last Name</label>
+            <label htmlFor="inputLastName">Last Name</label>
             <input
               type="text"
               className="form-control"
@@ -74,7 +71,7 @@ class Register extends Component {
             className="form-check form-check-inline mb-5"
             aria-describedby="userHelp"
           >
-            <label for="userType" className="font-weight-bold mr-5">
+            <label htmlFor="userType" className="font-weight-bold mr-5">
               User Type:
             </label>
             <input
@@ -99,13 +96,13 @@ class Register extends Component {
                 value={this.state.userType}
                 onChange={this.onChange("userType")}
               />
-              <label className="form-check-label" for="exampleRadios2">
+              <label className="form-check-label" htmlFor="exampleRadios2">
                 Tenant
               </label>
             </div>
           </div>
           <div className="form-group mb-5 font-weight-bold">
-            <label for="inputEmail">Email</label>
+            <label htmlFor="inputEmail">Email</label>
             <input
               type="text"
               className="form-control"
@@ -117,7 +114,7 @@ class Register extends Component {
             />
           </div>
           <div className="form-group mb-5 font-weight-bold">
-            <label for="inputPassword">Password</label>
+            <label htmlFor="inputPassword">Password</label>
             <input
               type="password"
               className="form-control"
