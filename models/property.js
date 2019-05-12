@@ -15,21 +15,21 @@ module.exports = function(sequelize, DataTypes) {
     propertyType: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    leased: {
-      type: BOOLEAN,
-      allowNull: false
-
     }
+    // leased: {
+    //   type: BOOLEAN,
+    //   allowNull: false
+
+    // }
   });
 
-  Property.associate = function (models) {
-    Property.belongsTo(models.Customer, {
+  Property.associate = function(models) {
+    Property.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false,
+        allowNull: false
       }
     });
-    Porperty.hasMany(models.Listing);
+    Property.hasMany(models.Listing);
   };
   return Property;
 };

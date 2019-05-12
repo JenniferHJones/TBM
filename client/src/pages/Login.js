@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import API from "../utils/API";
+import { Context } from "../context";
 // import { Link } from 'react-router-dom';
 
 class Login extends Component {
@@ -10,14 +11,25 @@ class Login extends Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem("current_customer_token");
+    const token = localStorage.getItem("current_user_token");
+
+    if (token) {
+      API.validateToken(token)
+        .then(() => this.props.history.push("/"))
+        .catch(() => localStorage.removeItem("current_user_token"));
+    }
   }
 
-  onSubmit = e => {
+  onSubmit = dispatch => {
     API.login(this.state)
-      .then(res =>
-        localStorage.setItem("current_customer_token", res.data.token)
-      )
+      .then(res => {
+        localStorage.setItem("current_user_token", res.data.token);
+        dispatch({
+          type: "set_current_user",
+          value: { email: res.data.email }
+        });
+      })
+      .then(() => this.props.history.push("/"))
       .catch(err => console.log(err));
   };
 
@@ -25,42 +37,49 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="container mt-5 mb-5">
-        <h1 className="mb-5">Log In</h1>
-        <form>
-          <div className="form-group mb-5 font-weight-bold">
-            <label for="inputEmail">Email</label>
-            <input
-              type="text"
-              className="form-control"
-              aria-describedby="emailHelp"
-              placeholder="Enter Email"
-              value={this.state.email}
-              label="email"
-              onChange={this.onChange("email")}
-            />
-          </div>
-          <div className="form-group mb-5 font-weight-bold">
-            <label for="inputPassword">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              aria-describedby="passwordHelp"
-              placeholder="Enter Password"
-              value={this.state.password}
-              label="password"
-              onChange={this.onChange("password")}
-            />
-          </div>
-          <button
-            type="submit"
-            className="btn btn-danger mb-5"
-            onClick={this.onSubmit}
-          >
-            Login
-          </button>
-        </form>
-      </div>
+      <Context.Consumer>
+        {value => {
+          console.log(value);
+          return (
+            <div className="container mt-5 mb-5">
+              <h1 className="mb-5">Log In</h1>
+              <form>
+                <div className="form-group mb-5 font-weight-bold">
+                  <label htmlFor="inputEmail">Email</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    aria-describedby="emailHelp"
+                    placeholder="Enter Email"
+                    value={this.state.email}
+                    label="email"
+                    onChange={this.onChange("email")}
+                  />
+                </div>
+                <div className="form-group mb-5 font-weight-bold">
+                  <label htmlFor="inputPassword">Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    aria-describedby="passwordHelp"
+                    placeholder="Enter Password"
+                    value={this.state.password}
+                    label="password"
+                    onChange={this.onChange("password")}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-danger mb-5"
+                  onClick={this.onSubmit}
+                >
+                  Login
+                </button>
+              </form>
+            </div>
+          );
+        }}
+      </Context.Consumer>
     );
   }
 }

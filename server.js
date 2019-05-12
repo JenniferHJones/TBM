@@ -12,11 +12,6 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Requiring passport as configured
-// const passport = require("./config/passport");
-
-// app.use(passport.initialize());
-
 // Requiring models for syncing
 const db = require("./models");
 
@@ -33,6 +28,8 @@ app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
+
+// change force: false when db tables are stable
 db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);

@@ -8,7 +8,7 @@ function Footer() {
     <>
       <footer className="footer">
         <div className="container text-center">
-          <img src={icon} alt="small bridge" className="pt-4 pb-4" />
+          <img src={icon} alt="small bridge" className="pt-2 pb-2" />
           <h5 className="copy-rights pb-2">
             Copyright © 2019 TBM &bull; All Rights Reserved
           </h5>

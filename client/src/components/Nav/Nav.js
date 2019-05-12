@@ -1,9 +1,15 @@
-import React from "react";
-import icon from "../../images/icon.png";
+import React, { useContext } from "react";
+import { Context } from "../../context";
 import { Link } from "react-router-dom";
+import API from "../../utils/API";
+import icon from "../../images/icon.png";
 import "./nav.css";
 
-function Nav() {
+const Nav = () => {
+  const {
+    state: { currentUser }
+  } = useContext(Context);
+
   return (
     <>
       <nav className="navbar navbar-expand-lg">
@@ -30,38 +36,47 @@ function Nav() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link ml-5" href="#">
-                Features
-              </a>
+              <a className="nav-link ml-5">Features</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link ml-5" href="#">
-                Pricing
-              </a>
+              <a className="nav-link ml-5">Pricing</a>
             </li>
           </ul>
-          <form className="form-inline">
-            <Link to="/Register">
+          <div>
+            {!currentUser && (
+              <>
+                <Link to="/Register">
+                  <button
+                    className="btn btn-lg btn-outline-danger mr-5"
+                    type="button"
+                  >
+                    Register
+                  </button>
+                  {""}
+                </Link>
+                <Link to="/Login">
+                  <button
+                    className="btn btn-lg btn-outline-danger mr-5"
+                    type="button"
+                  >
+                    Sign In
+                  </button>
+                </Link>
+              </>
+            )}
+            {currentUser && (
               <button
-                className="btn btn-lg btn-outline-danger mr-5 register"
-                type="button"
+                onClick={() => localStorage.removeItem("current_user_token")}
               >
-                Register
+                Log Out
               </button>
-            </Link>
-            <Link to="/Login">
-              <button
-                className="btn btn-lg btn-outline-danger mr-5 signIn"
-                type="button"
-              >
-                Sign In
-              </button>
-            </Link>
-          </form>
+            )}
+            {currentUser && <span>{currentUser.email}</span>}
+          </div>
         </div>
       </nav>
     </>
   );
-}
+};
 
 export default Nav;
