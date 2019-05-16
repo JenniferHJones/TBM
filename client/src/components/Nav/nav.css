@@ -1,7 +1,7 @@
 nav {
   background-color: black;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .navbar-brand {
@@ -9,8 +9,8 @@ nav {
   font-size: 35px;
 }
 
-a {
-  color: red;
+.navbar-nav .nav-item .nav-link {
+  color: gold;
 }
 
 a:hover {

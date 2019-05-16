@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-
-import API from "../utils/API";
-// import { Redirect } from "react-router-dom";
+import API from "../../utils/API";
+import "./register.css";
 
 class Register extends Component {
   state = {
@@ -9,31 +8,46 @@ class Register extends Component {
     lastName: "",
     userType: "",
     email: "",
-    password: ""
+    password: "",
+    error: ""
   };
 
   componentDidMount() {
     const token = localStorage.getItem("current_user_token");
     if (token) {
       API.validateToken(token)
-        .then(() => this.props.history.push("/"))
+        .then(() => this.props.history.push("/Dashboard"))
         .catch(() => localStorage.removeItem("current_user_token"));
     }
   }
 
-  // need functions to validate these fields
-  // validateEmail () {
-  // }
-
-  // validatePassword () {
-
-  // }
-
   onSubmit = e => {
     e.preventDefault();
-    return API.register(this.state)
-      .then(res => localStorage.setItem("current_user_token", res.data.token))
-      .catch(err => console.log(err));
+
+    if (this.validation()) {
+      return API.register(this.state)
+        .then(res => {
+          this.props.update(res.data);
+          console.log("running?");
+          console.log(this.props);
+          localStorage.setItem("current_user_token", res.data.token);
+          this.props.history.push("/Dashboard");
+        })
+        .catch(err => this.setState({ error: "DuplicateEmail" }));
+    }
+  };
+
+  validation = () => {
+    const re = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    if (!re.test(this.state.email)) {
+      this.setState({ error: "EmailFormat" });
+      return false;
+    }
+    if (this.state.password.length < 4) {
+      this.setState({ error: "PasswordLength" });
+      return false;
+    }
+    return true;
   };
 
   onChange = key => e => this.setState({ [key]: e.target.value });
@@ -42,6 +56,7 @@ class Register extends Component {
     return (
       <div className="container mt-5 mb-5">
         <h1 className="mb-5">Register</h1>
+        <p className="regRequired">All fields are required.</p>
         <form>
           <div className="form-group mb-5 font-weight-bold">
             <label htmlFor="inputFirstName">First Name</label>
@@ -83,7 +98,7 @@ class Register extends Component {
               onChange={this.onChange("userType")}
               checked
             />
-            <label className="form-check-label mr-5" for="exampleRadios1">
+            <label className="form-check-label mr-5" htmlFor="exampleRadios1">
               Landlord
             </label>
 
@@ -102,7 +117,21 @@ class Register extends Component {
             </div>
           </div>
           <div className="form-group mb-5 font-weight-bold">
-            <label htmlFor="inputEmail">Email</label>
+            <label htmlFor="inputEmail">
+              Email{" "}
+              {this.state.error === "DuplicateEmail" ? (
+                <span className="form-error">
+                  (Email already registered; please log in)
+                </span>
+              ) : (
+                <></>
+              )}
+              {this.state.error === "EmailFormat" ? (
+                <span className="form-error">(Bad email format)</span>
+              ) : (
+                <></>
+              )}
+            </label>
             <input
               type="text"
               className="form-control"
@@ -114,7 +143,16 @@ class Register extends Component {
             />
           </div>
           <div className="form-group mb-5 font-weight-bold">
-            <label htmlFor="inputPassword">Password</label>
+            <label htmlFor="inputPassword">
+              Password{" "}
+              {this.state.error === "PasswordLength" ? (
+                <span className="form-error">
+                  (Must be at least 4 characters)
+                </span>
+              ) : (
+                <></>
+              )}
+            </label>
             <input
               type="password"
               className="form-control"
@@ -127,9 +165,14 @@ class Register extends Component {
           </div>
           <button
             type="submit"
-            className="btn btn-danger mb-5"
+            className="btn btn-warning mb-5"
             onClick={this.onSubmit}
-            disabled={!this.state.email || !this.state.password}
+            disabled={
+              !this.state.firstName ||
+              !this.state.lastName ||
+              !this.state.email ||
+              !this.state.password
+            }
           >
             Register
           </button>

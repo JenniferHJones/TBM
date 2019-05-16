@@ -15,12 +15,33 @@ module.exports = function(sequelize, DataTypes) {
     propertyType: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
     // leased: {
     //   type: BOOLEAN,
     //   allowNull: false
-
     // }
+    // listedDate: {
+    //   type: DataTypes.Date,
+    // },
+    // availableDate: {
+    //   type: DataTypes.Date,
+    // },
+    beds: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    baths: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    size: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    rentPrice: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
+    }
   });
 
   Property.associate = function(models) {
@@ -29,7 +50,6 @@ module.exports = function(sequelize, DataTypes) {
         allowNull: false
       }
     });
-    Property.hasMany(models.Listing);
   };
   return Property;
 };
