@@ -6,12 +6,12 @@ import { UserContext } from "../context";
 function Dashboard(props) {
   const { state, dispatch } = useContext(UserContext);
 
-  useEffect(() => {
-    console.log("state", state);
-    if (!state.currentUser) {
-      props.history.push("/register");
-    }
-  }, [state.currentUser]);
+  // useEffect(() => {
+  //   console.log("state", state);
+  //   if (!state.currentUser) {
+  //     props.history.push("/register");
+  //   }
+  // }, [state.currentUser]);
 
   return (
     <>

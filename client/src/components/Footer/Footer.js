@@ -13,7 +13,7 @@ function Footer() {
               <h5>Company</h5>
               <ul className="list-unstyled footer-list">
                 <li>
-                  <Link to="/ComingSoon" className="fLink">
+                  <Link to="" className="fLink">
                     About Us
                   </Link>
                 </li>
