@@ -46,16 +46,34 @@ const Nav = props => {
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link ml-5" to="">
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link ml-5" to="">
-                Pricing
-              </Link>
-            </li>
+            {!state.currentUser && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link ml-5" to="">
+                    Features
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link ml-5" to="">
+                    Pricing
+                  </Link>
+                </li>
+              </>
+            )}
+            {state.currentUser && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link ml-5" to="/property">
+                    Properties
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link ml-5" to="/listing">
+                    Listings
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
           <div>
             {state.currentUser && (
