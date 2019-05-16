@@ -1,7 +1,6 @@
 import React, { useReducer } from "react";
 
 const reducer = (state, action) => {
-  console.log(action);
   switch (action.type) {
     case "set_current_user":
       return { ...state, currentUser: action.value };
@@ -11,15 +10,15 @@ const reducer = (state, action) => {
 };
 const initialState = { currentUser: null };
 
-const Context = React.createContext(initialState);
+const UserContext = React.createContext(initialState);
 
-function UserContext(props) {
+function UserProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <Context.Provider value={{ state, dispatch }}>
+    <UserContext.Provider value={{ state, dispatch }}>
       {props.children}
-    </Context.Provider>
+    </UserContext.Provider>
   );
 }
 
-export { UserContext, Context };
+export { UserProvider, UserContext };

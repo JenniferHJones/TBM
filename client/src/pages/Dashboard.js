@@ -1,81 +1,23 @@
-import React, { Component } from "react";
-
-import API from "../utils/API";
+import React, { useContext, useEffect } from "react";
+import { UserContext } from "../context";
+// import API from "../utils/API";
 // import { Link } from 'react-router-dom';
-import RandomHomeComponent from "../components/RandomHomeComponent";
-import Jumbotron from "../components/Jumbotron/Jumbotron";
 
-class Dashboard extends Component {
-  state = {
-    posts: [],
-    title: "",
-    body: "",
-    category: ""
-  };
+function Dashboard(props) {
+  const { state, dispatch } = useContext(UserContext);
 
-  componentDidMount() {
-    this.loadPosts();
-  }
+  useEffect(() => {
+    console.log("state", state);
+    if (!state.currentUser) {
+      props.history.push("/register");
+    }
+  }, [state.currentUser]);
 
-  loadPosts = () => {
-    API.getPosts()
-      .then(res =>
-        this.setState({ posts: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
-
-  onChange = key => e => this.setState({ [key]: e.target.value });
-
-  onClick = () =>
-    API.createPost({
-      title: this.state.title,
-      body: this.state.body,
-      category: this.state.category
-    }).then(() =>
-      this.setState({
-        posts: [
-          ...this.state.posts,
-          {
-            title: this.state.title,
-            body: this.state.body,
-            category: this.state.category
-          }
-        ]
-      })
-    );
-  render() {
-    return (
-      <>
-        <Jumbotron />
-        <div>
-          {JSON.stringify(this.state.posts)}
-          <RandomHomeComponent />
-          <div>
-            <input
-              type="text"
-              value={this.state.title}
-              label="title"
-              onChange={this.onChange("title")}
-            />
-            <input
-              type="text"
-              value={this.state.body}
-              label="body"
-              onChange={this.onChange("body")}
-            />
-            <input
-              type="text"
-              value={this.state.category}
-              label="category"
-              onChange={this.onChange("category")}
-            />
-            <button onClick={this.onClick}>Create</button>
-          </div>
-        </div>
-      </>
-    );
-  }
+  return (
+    <>
+      <div>{JSON.stringify(state)}</div>;
+    </>
+  );
 }
 
 export default Dashboard;

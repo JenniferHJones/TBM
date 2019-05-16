@@ -14,6 +14,9 @@ export default {
   login: function(data) {
     return axios.post("/api/user/login", data);
   },
+  dashboard: function(data) {
+    return axios.post("/api/user/dashboard", data);
+  },
   validateToken: function(token) {
     return axios.post("/api/user/validate", { token: token });
   }

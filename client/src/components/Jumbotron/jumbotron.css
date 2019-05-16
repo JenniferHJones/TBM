@@ -1,15 +1,10 @@
 .jumbotron {
+  border-radius: 0;
   color: white;
-  margin-bottom: 5px;
   padding-left: 0;
   padding-right: 0;
   height: 500px;
-  position: relative;
   background: url("../../images/bridge7.png");
   width: 100%;
   background-size: 100% 100%;
-}
-
-.title {
-  margin-bottom: 20px;
 }
