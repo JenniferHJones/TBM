@@ -1,6 +1,8 @@
+// External imports
 import React from "react";
 import { Link } from "react-router-dom";
 
+// Internal import
 import "./footer.css";
 
 function Footer() {

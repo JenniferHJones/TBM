@@ -1,11 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../context";
+// External imports
+import React, { useContext, useEffect, useState } from "react";
+import { Snackbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import API from "../../utils/API";
+
+// Internal imports
+import LogoutAlert from "../Alert/LogoutAlert";
+import { UserContext } from "../../context";
 import icon from "../../images/icon.png";
+import API from "../../utils/API";
 import "./nav.css";
 
 const Nav = props => {
+  const [openSnackStatus, setSnackStatus] = useState(false);
   const { state, dispatch } = useContext(UserContext);
 
   useEffect(() => {
@@ -25,6 +31,15 @@ const Nav = props => {
 
   return (
     <>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={openSnackStatus}
+        onClose={() => setSnackStatus(false)}
+        ContentProps={{
+          "aria-describedby": "message-id"
+        }}
+        message={<span id="message-id">You are now logged out.</span>}
+      />
       <nav className="navbar navbar-expand-lg navbar-dark pt-3 pb-3">
         <img src={icon} alt="small bridge" />
         <div className="navbar-brand ml-3">TBM</div>
@@ -104,6 +119,7 @@ const Nav = props => {
                 onClick={() => {
                   localStorage.removeItem("current_user_token");
                   dispatch({ type: "set_current_user", value: null });
+                  setSnackStatus(true);
                   props.history.push("/");
                 }}
               >
