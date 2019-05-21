@@ -16,10 +16,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // leased: {
-    //   type: BOOLEAN,
-    //   allowNull: false
-    // }
+    leased: {
+      type: DataTypes.BOOLEAN,
+      default: false
+    },
     // listedDate: {
     //   type: DataTypes.Date,
     // },
