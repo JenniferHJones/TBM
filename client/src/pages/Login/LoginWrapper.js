@@ -3,7 +3,7 @@ import Login from "./Login";
 import { UserContext } from "../../context";
 
 const LoginWrapper = props => {
-  const { state, dispatch } = useContext(UserContext);
+  const { /*state,*/ dispatch } = useContext(UserContext);
 
   const updateUser = user => {
     console.log(user);
