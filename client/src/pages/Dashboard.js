@@ -3,6 +3,8 @@ import { UserContext } from "../context";
 // import API from "../utils/API";
 // import { Link } from 'react-router-dom';
 
+import Card from "./Cards/cards";
+
 function Dashboard(props) {
   const { state, dispatch } = useContext(UserContext);
 
@@ -14,9 +16,13 @@ function Dashboard(props) {
   // }, [state.currentUser]);
 
   return (
-    <>
-      <div>{JSON.stringify(state)}</div>
-    </>
+    // <>
+    //   {/* <div>{JSON.stringify(state)}</div> */}
+    // </>
+    <div>
+      <Card/>
+    </div>
+    
  
 
   );
