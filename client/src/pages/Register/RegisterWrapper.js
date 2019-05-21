@@ -3,7 +3,7 @@ import Register from "./Register";
 import { UserContext } from "../../context";
 
 const RegisterWrapper = props => {
-  const { state, dispatch } = useContext(UserContext);
+  const { /*state,*/ dispatch } = useContext(UserContext);
 
   const updateUser = user => {
     console.log(user);

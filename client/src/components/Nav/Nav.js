@@ -10,7 +10,7 @@ const Nav = props => {
 
   useEffect(() => {
     const token = localStorage.getItem("current_user_token");
-    console.log("token", token);
+    // console.log("token", token);
     if (token) {
       API.validateToken(token)
         .then(ax => dispatch({ type: "set_current_user", value: ax.data }))
@@ -21,7 +21,7 @@ const Nav = props => {
     }
   }, [dispatch]);
   // console.log(UserContext);
-  console.log(state);
+  // console.log(state);
 
   return (
     <>
@@ -41,20 +41,15 @@ const Nav = props => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
+            <li className="nav-item">
               <Link className="nav-link ml-5" to="/">
-                Home <span className="sr-only">(current)</span>
+                Home
               </Link>
             </li>
             {!state.currentUser && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link ml-5" to="">
-                    Features
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link ml-5" to="">
+                  <Link className="nav-link ml-5" to="/pricing">
                     Pricing
                   </Link>
                 </li>
