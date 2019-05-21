@@ -4,7 +4,7 @@ import { Snackbar } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 // Internal imports
-import LogoutAlert from "../Alert/LogoutAlert";
+// import LogoutAlert from "../Alert/LogoutAlert";
 import { UserContext } from "../../context";
 import icon from "../../images/icon.png";
 import API from "../../utils/API";
