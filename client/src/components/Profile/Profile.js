@@ -1,5 +1,8 @@
+// External imports
 import React from "react";
 import { Link } from "react-router-dom";
+
+// Internal import
 import "./profile.css";
 
 function Profile() {

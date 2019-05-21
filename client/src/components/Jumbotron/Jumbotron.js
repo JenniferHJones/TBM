@@ -1,6 +1,8 @@
+// External import
 import React from "react";
-import "./jumbotron.css";
 
+// Internal imports
+import "./jumbotron.css";
 import img from "../../images/bridge7.png";
 
 function Jumbotron() {
