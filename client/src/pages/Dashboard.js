@@ -15,8 +15,10 @@ function Dashboard(props) {
 
   return (
     <>
-      <div>{JSON.stringify(state)}</div>;
+      <div>{JSON.stringify(state)}</div>
     </>
+ 
+
   );
 }
 
