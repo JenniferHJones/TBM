@@ -13,7 +13,7 @@ module.exports = {
       }
       console.log(decoded);
       return db.User.findOne({ where: { email: decoded.email } }).then(c =>
-        res.status(200).send({ email: c.email, firstName: c.firstName })
+        res.status(200).send({ id: c.id, email: c.email, firstName: c.firstName })
       );
     });
   },
@@ -28,6 +28,7 @@ module.exports = {
           } else {
             const token = jwt.sign({ email: c.email }, "shhhhh");
             res.json({
+              id: user.id,
               firstName: c.firstName,
               email: c.email,
               token: token
@@ -53,6 +54,7 @@ module.exports = {
             }).then(function(user) {
               const token = jwt.sign({ email: user.email }, "shhhhh");
               res.json({
+                id: user.id,
                 firstName: user.firstName,
                 email: user.email,
                 token: token

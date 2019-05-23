@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import API from "../utils/API";
+import API from "../../utils/API";
 
 /* Import Components */
-import Input from "../components/PropertyForm/Input";
-import Select from "../components/PropertyForm/Select";
-import Button from "../components/PropertyForm/Button";
+import Input from "../../components/PropertyForm/Input";
+import Select from "../../components/PropertyForm/Select";
+import Button from "../../components/PropertyForm/Button";
 
 class PropertyForm extends Component {
   constructor(props) {
@@ -14,11 +14,12 @@ class PropertyForm extends Component {
       newProperty: {
         address: "",
         location: "",
-        company: "",
+        companyName: "",
         propertyType: "",
         beds: "",
         baths: "",
-        size: ""
+        size: "",
+        rentPrice: 0.00
       },
       propertyTypeOptions: ["Single Family", "Multi Family", "Condominium", "Apartment", "Comercial"]
     };
@@ -37,7 +38,7 @@ class PropertyForm extends Component {
       prevState => ({
         newProperty: {
           ...prevState.newProperty,
-          company: value
+          companyName: value
         }
       }),
       () => console.log(this.state.newProperty)
@@ -86,11 +87,14 @@ class PropertyForm extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    // API.addProperty(this.state)
-    // .then(res => {
-    //   this.props.update(res.data);
-    // })
-    // .catch(err => this.setState({ error: "Unable to add property" }));
+    let data = this.state.newProperty;
+    data.UserId = this.props.user.currentUser.id;
+    console.log(data);
+    API.addProperty(data)
+      .then(res => {
+        this.props.update(res.data);
+      })
+      .catch(err => this.setState({ error: "Unable to add property" }));
   }
 
   handleClearForm(e) {
@@ -145,7 +149,7 @@ class PropertyForm extends Component {
           handleChange={this.handleInput}
         />{" "}
         <Input
-          inputType={"number"}
+          inputType={"text"}
           name={"beds"}
           title={"Beds"}
           value={this.state.newProperty.beds}
@@ -153,7 +157,7 @@ class PropertyForm extends Component {
           handleChange={this.handleInput}
         />{" "}
         <Input
-          inputType={"number"}
+          inputType={"text"}
           name={"baths"}
           title={"Baths"}
           value={this.state.newProperty.baths}
@@ -165,7 +169,15 @@ class PropertyForm extends Component {
           name={"size"}
           title={"Size"}
           value={this.state.newProperty.size}
-          placeholder={"2"}
+          placeholder={"550 sqft"}
+          handleChange={this.handleInput}
+        />{" "}
+        <Input
+          inputType={"text"}
+          name={"rentPrice"}
+          title={"Monthly Rent"}
+          value={this.state.newProperty.rentPrice}
+          placeholder={"1200.00"}
           handleChange={this.handleInput}
         />{" "}
         <Button
