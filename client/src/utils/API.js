@@ -21,7 +21,7 @@ export default {
     return axios.post("/api/user/validate", { token: token });
   },
   addProperty: function(data) {
-    return axios.post("/api/propertyform", data);
+    return axios.post("/api/propertyform/propertyform", data);
   }
   // // Gets the book with the given id
   // getBook: function(id) {

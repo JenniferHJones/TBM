@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Pricing from "./pages/Pricing";
 import Dashboard from "./pages/Dashboard";
 import Property from "./pages/Property";
-import PropertyForm from "./pages/PropertyForm";
+import PropertyFormWrapper from "./pages/PropertyForm/PropertyFormWrapper";
 import Listing from "./pages/Listing";
 
 import NoMatch from "./pages/NoMatch";
@@ -40,7 +40,7 @@ function App() {
                   <Route exact path="/pricing" component={Pricing} />
                   <Route exact path="/dashboard" component={Dashboard} />
                   <Route exact path="/property" component={Property} />
-                  <Route exact path="/propertyform" component={PropertyForm} />
+                  <Route exact path="/propertyform" component={PropertyFormWrapper} />
                   <Route exact path="/listing" component={Listing} />
                   {/* <Route exact path="/aboutus" component={ComingSoon} /> */}
                   {/* <Route component={ComingSoon} /> */}
