@@ -41,7 +41,7 @@ function App() {
                   <Route exact path="/dashboard" component={Dashboard} />
                   <Route exact path="/property" component={Property} />
                   <Route exact path="/propertyform" component={PropertyForm} />
-                  <Route exact path="/listings" component={Listing} />
+                  <Route exact path="/listing" component={Listing} />
                   {/* <Route exact path="/aboutus" component={ComingSoon} /> */}
                   {/* <Route component={ComingSoon} /> */}
                   <Route component={NoMatch} />

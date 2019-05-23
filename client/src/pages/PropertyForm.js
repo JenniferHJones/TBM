@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "../utils/API";
 
 /* Import Components */
 import Input from "../components/PropertyForm/Input";
@@ -85,6 +86,11 @@ class PropertyForm extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
+    // API.addProperty(this.state)
+    // .then(res => {
+    //   this.props.update(res.data);
+    // })
+    // .catch(err => this.setState({ error: "Unable to add property" }));
   }
 
   handleClearForm(e) {
@@ -105,7 +111,7 @@ class PropertyForm extends Component {
   render() {
     return (
       <form className="container-fluid " onSubmit={this.handleFormSubmit}>
-        <h2>Fill out form to add new property.</h2>
+        <h2>Add new property.</h2>
         <Input
           inputType={"text"}
           title={"Address"}
