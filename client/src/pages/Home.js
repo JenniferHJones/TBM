@@ -36,8 +36,6 @@ const Home = () => {
       </div>
       <br />
       <br />
-      <br />
-      <br />
       <Profile />
     </>
   );
