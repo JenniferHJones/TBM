@@ -1,6 +1,15 @@
 // External imports
 import React, { useContext, useEffect, useState } from "react";
-import { Snackbar } from "@material-ui/core";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import Button from "@material-ui/core/Button";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CloseIcon from "@material-ui/icons/Close";
+import green from "@material-ui/core/colors/green";
+import IconButton from "@material-ui/core/IconButton";
+import Snackbar from "@material-ui/core/Snackbar";
+import SnackbarContent from "@material-ui/core/SnackbarContent";
+import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
 // Internal imports
@@ -12,6 +21,61 @@ import "./nav.css";
 const Nav = props => {
   const [openSnackStatus, setSnackStatus] = useState(false);
   const { state, dispatch } = useContext(UserContext);
+  const variantIcon = {
+    success: CheckCircleIcon
+  };
+  const styles1 = theme => ({
+    success: {
+      backgroundColor: green[600]
+    },
+    icon: {
+      fontSize: 20
+    },
+    iconVariant: {
+      opacity: 0.9,
+      marginRight: theme.spacing.unit
+    },
+    message: {
+      fontSize: "20px",
+      display: "flex",
+      alignItems: "center"
+    }
+  });
+
+  function MySnackbarContent(props) {
+    const { classes, className, message, onClose, variant, ...other } = props;
+    const Icon = variantIcon[variant];
+
+    return (
+      <SnackbarContent
+        className={classNames(classes[variant], className)}
+        aria-describedby="client-snackbar"
+        message={
+          <span id="client-snackbar" className={classes.message}>
+            <Icon className={classNames(classes.icon, classes.iconVariant)} />
+            {message}
+          </span>
+        }
+        {...other}
+      />
+    );
+  }
+
+  MySnackbarContent.propTypes = {
+    classes: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    message: PropTypes.node,
+    onClose: PropTypes.func,
+    variant: PropTypes.oneOf(["success", "warning", "error", "info"]).isRequired
+  };
+
+  const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
+
+  const styles2 = theme => ({
+    margin: {
+      margin: theme.spacing.unit
+    }
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("current_user_token");
@@ -31,14 +95,19 @@ const Nav = props => {
   return (
     <>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={openSnackStatus}
+        autoHideDuration={2000}
         onClose={() => setSnackStatus(false)}
-        ContentProps={{
-          "aria-describedby": "message-id"
-        }}
-        message={<span id="message-id">You are now logged out.</span>}
-      />
+      >
+        <MySnackbarContentWrapper
+          variant="success"
+          ContentProps={{
+            "aria-describedby": "message-id"
+          }}
+          message={<span id="message-id">You are now logged out.</span>}
+        />
+      </Snackbar>
       <nav className="navbar navbar-expand-lg navbar-dark pt-3 pb-3">
         <img src={icon} alt="small bridge" />
         <div className="navbar-brand ml-3">TBM</div>
