@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context";
 import icon from "../../images/icon.png";
 import API from "../../utils/API";
-import "./nav.css";
 
 const Nav = props => {
   const [openSnackStatus, setSnackStatus] = useState(false);
@@ -99,9 +98,17 @@ const Nav = props => {
           message={<span id="message-id">You are now logged out.</span>}
         />
       </Snackbar>
-      <nav className="navbar navbar-expand-lg navbar-dark pt-3 pb-3">
+      <nav
+        className="navbar navbar-expand-lg navbar-dark pt-3 pb-3"
+        style={{ backgroundColor: "black", color: "white", fontSize: "20px" }}
+      >
         <img src={icon} alt="small bridge" />
-        <div className="navbar-brand ml-3">TBM</div>
+        <div
+          className="navbar-brand ml-3"
+          style={{ color: "white", fontSize: "35px" }}
+        >
+          TBM
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -115,15 +122,27 @@ const Nav = props => {
         </button>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link className="nav-link ml-5" to="/">
-                Home
-              </Link>
-            </li>
             {!state.currentUser && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link ml-5" to="/pricing">
+                  <Link
+                    className="nav-link ml-5"
+                    to="/"
+                    style={{ color: "gold" }}
+                  >
+                    Home
+                  </Link>
+                </li>
+              </>
+            )}
+            {!state.currentUser && (
+              <>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link ml-5"
+                    to="/pricing"
+                    style={{ color: "gold" }}
+                  >
                     Pricing
                   </Link>
                 </li>
@@ -132,12 +151,29 @@ const Nav = props => {
             {state.currentUser && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link ml-5" to="/property">
+                  <Link
+                    className="nav-link ml-5"
+                    to="/dashboard"
+                    style={{ color: "gold" }}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link ml-5"
+                    to="/property"
+                    style={{ color: "gold" }}
+                  >
                     Properties
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link ml-5" to="/listing">
+                  <Link
+                    className="nav-link ml-5"
+                    to="/listing"
+                    style={{ color: "gold" }}
+                  >
                     Listings
                   </Link>
                 </li>
