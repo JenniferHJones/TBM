@@ -7,33 +7,36 @@ const saltRounds = 10;
 // =============================================================
 module.exports = {
   validateToken: function(req, res) {
-    return jwt.verify(req.body.token, "shhhhh", function(err, decoded) {
+    return jwt.verify(req.body.token, "shhhhh", async function(err, decoded) {
       if (err) {
         return res.status(400).send({ msg: "The token is bad!" });
       }
       console.log(decoded);
-      return db.User.findOne({ where: { email: decoded.email } }).then(c =>
-        res.status(200).send({ id: c.id, email: c.email, firstName: c.firstName })
-      );
+      const user = await db.User.findOne({ where: { email: decoded.email } });
+      if (!user) {
+        return res.status(400).send({ msg: "No user found" });
+      }
+
+      res
+        .status(200)
+        .send({ id: c.id, email: c.email, firstName: c.firstName });
     });
   },
-  login: function(req, res) {
-    db.User.findOne({ where: { email: req.body.email } }).then(c => {
-      if (!c) {
-        res.status(400).send({ msg: "Ivalid Email or Password" });
+  login: async function(req, res) {
+    const user = await db.User.findOne({ where: { email: req.body.email } });
+    if (!user) {
+      return res.status(400).send({ msg: "Ivalid Email or Password" });
+    }
+    bcrypt.compare(req.body.password, user.password, function(err, bcryptRes) {
+      if (!bcryptRes) {
+        res.status(400).send({ msg: "Invlid Email or Password" });
       } else {
-        bcrypt.compare(req.body.password, c.password, function(err, bcryptRes) {
-          if (!bcryptRes) {
-            res.status(400).send({ msg: "Invlid Email or Password" });
-          } else {
-            const token = jwt.sign({ email: c.email }, "shhhhh");
-            res.json({
-              id: user.id,
-              firstName: c.firstName,
-              email: c.email,
-              token: token
-            });
-          }
+        const token = jwt.sign({ email: user.email }, "shhhhh");
+        res.json({
+          id: user.id,
+          firstName: user.firstName,
+          email: user.email,
+          token: token
         });
       }
     });

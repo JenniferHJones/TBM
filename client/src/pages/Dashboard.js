@@ -1,15 +1,12 @@
 import React from "react";
-// import { UserContext } from "../context";
-// import API from "../utils/API";
-// import { Link } from 'react-router-dom';
 
-import Card from "./Cards/cards";
+import Card from "../components/Cards/cards";
 
 function Dashboard(props) {
   return (
     <div>
-      <Card/>
-    </div> 
+      <Card />
+    </div>
   );
 }
 
