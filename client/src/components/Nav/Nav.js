@@ -2,11 +2,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import Button from "@material-ui/core/Button";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import CloseIcon from "@material-ui/icons/Close";
 import green from "@material-ui/core/colors/green";
-import IconButton from "@material-ui/core/IconButton";
 import Snackbar from "@material-ui/core/Snackbar";
 import SnackbarContent from "@material-ui/core/SnackbarContent";
 import { withStyles } from "@material-ui/core/styles";
@@ -70,12 +67,6 @@ const Nav = props => {
   };
 
   const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
-
-  const styles2 = theme => ({
-    margin: {
-      margin: theme.spacing.unit
-    }
-  });
 
   useEffect(() => {
     const token = localStorage.getItem("current_user_token");
