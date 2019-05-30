@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
-import { UserContext } from "../context";
+import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
+// import { UserContext } from "../context";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -9,6 +9,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import API from "../utils/API";
 
 const PropertyTableCell = withStyles(theme => ({
   head: {
@@ -20,7 +21,7 @@ const PropertyTableCell = withStyles(theme => ({
   }
 }))(TableCell);
 
-const styles = theme => ({
+const styles = withStyles(theme => ({
   root: {
     width: "90%",
     marginLeft: theme.spacing.unit * 10,
@@ -35,51 +36,60 @@ const styles = theme => ({
       backgroundColor: theme.palette.background.default
     }
   }
-});
+}));
 
-const rows = [
-  // get data from db to display on table.
-];
-
-function PropertyTable(props) {
-  const { state, dispatch } = useContext(UserContext);
-
-  if (!state.currentUser) {
-    return <Redirect to="/" />;
+class PropertyTable extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      rows: []
+    }
   }
 
-  const { classes } = props;
+  loadProperties = () => {
+    API.tableFindAll()
+      .then(res => 
+        this.setState({ rows: res.data })
+      )
+      .catch(err => console.log(err));
+  };
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <PropertyTableCell align="center">
-              Property Address
-            </PropertyTableCell>
-            <PropertyTableCell align="center">Location</PropertyTableCell>
-            <PropertyTableCell align="center">Company</PropertyTableCell>
-            <PropertyTableCell align="center">Property Type</PropertyTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow className={classes.row} key={row.id}>
-              <PropertyTableCell align="center">{"address"}</PropertyTableCell>
-              <PropertyTableCell align="center">{"location"}</PropertyTableCell>
-              <PropertyTableCell align="center">{"company"}</PropertyTableCell>
-              <PropertyTableCell align="center">{"PropType"}</PropertyTableCell>
+  componentWillMount() {
+    this.loadProperties();
+  }
+
+  render() {
+    console.log(this.props)
+    return (
+      <Paper className={this.props.classes.root}> 
+        <Table className={this.props.classes.table} >
+          <TableHead>
+            <TableRow>
+              <PropertyTableCell align="center">Property Address</PropertyTableCell>
+              <PropertyTableCell align="center">Location</PropertyTableCell>
+              <PropertyTableCell align="center">Company</PropertyTableCell>
+              <PropertyTableCell align="center">Property Type</PropertyTableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+          </TableHead>
+          <TableBody stripedRows>
+            {this.state.rows.map(row => (
+              <TableRow className={this.props.classes.row} key={row.id} >
+                <PropertyTableCell align="center">{row.address}</PropertyTableCell>
+                <PropertyTableCell align="center">{row.location}</PropertyTableCell>
+                <PropertyTableCell align="center">{row.companyName}</PropertyTableCell>
+                <PropertyTableCell align="center">{row.propertyType}</PropertyTableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
 }
 
 PropertyTable.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PropertyTable);
+export default styles(PropertyTable);

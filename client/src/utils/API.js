@@ -22,6 +22,9 @@ export default {
   },
   addProperty: function(data) {
     return axios.post("/api/propertyform/propertyform", data);
+  },
+  tableFindAll: function(data) {
+    return axios.post("/api/property", data);
   }
   // // Gets the book with the given id
   // getBook: function(id) {
