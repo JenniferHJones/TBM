@@ -1,46 +1,53 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
+import { UserContext } from "../context";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 const PropertyTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: theme.palette.common.white
   },
   body: {
-    fontSize: 14,
-  },
+    fontSize: 14
+  }
 }))(TableCell);
 
 const styles = theme => ({
   root: {
-    width: '90%',
+    width: "90%",
     marginLeft: theme.spacing.unit * 10,
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
+    overflowX: "auto"
   },
   table: {
-    minWidth: 700,
+    minWidth: 700
   },
   row: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.background.default,
-    },
-  },
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.background.default
+    }
+  }
 });
 
 const rows = [
-    // get data from db to display on table.
+  // get data from db to display on table.
 ];
 
-
 function PropertyTable(props) {
+  const { state, dispatch } = useContext(UserContext);
+
+  if (!state.currentUser) {
+    return <Redirect to="/" />;
+  }
+
   const { classes } = props;
 
   return (
@@ -48,7 +55,9 @@ function PropertyTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <PropertyTableCell align="center">Property Address</PropertyTableCell>
+            <PropertyTableCell align="center">
+              Property Address
+            </PropertyTableCell>
             <PropertyTableCell align="center">Location</PropertyTableCell>
             <PropertyTableCell align="center">Company</PropertyTableCell>
             <PropertyTableCell align="center">Property Type</PropertyTableCell>
@@ -56,7 +65,7 @@ function PropertyTable(props) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow className={classes.row} key={row.id} >          
+            <TableRow className={classes.row} key={row.id}>
               <PropertyTableCell align="center">{"address"}</PropertyTableCell>
               <PropertyTableCell align="center">{"location"}</PropertyTableCell>
               <PropertyTableCell align="center">{"company"}</PropertyTableCell>
@@ -70,7 +79,7 @@ function PropertyTable(props) {
 }
 
 PropertyTable.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(PropertyTable);
