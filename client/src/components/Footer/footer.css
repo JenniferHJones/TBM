@@ -9,6 +9,10 @@ footer {
   color: gold;
 }
 
+.fLink:hover {
+  color: white;
+}
+
 :root {
   --space: 1.5em 0;
   --space: 2em 0;

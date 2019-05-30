@@ -19,7 +19,7 @@ module.exports = {
 
       res
         .status(200)
-        .send({ id: c.id, email: c.email, firstName: c.firstName });
+        .send({ id: user.id, email: user.email, firstName: user.firstName });
     });
   },
   login: async function(req, res) {
