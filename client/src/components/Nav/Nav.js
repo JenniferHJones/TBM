@@ -178,6 +178,17 @@ const Nav = props => {
                     Listings
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to="/propertyform">
+                    <button
+                      className="btn btn-outline-warning ml-5"
+                      id="addProperty"
+                      type="button"
+                    >
+                      Add Property
+                    </button>
+                  </Link>
+                </li>
               </>
             )}
           </ul>

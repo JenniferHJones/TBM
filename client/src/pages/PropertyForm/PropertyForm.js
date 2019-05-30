@@ -1,7 +1,9 @@
+// External imports
 import React, { Component } from "react";
-import API from "../../utils/API";
+import { Link } from "react-router-dom";
 
-/* Import Components */
+// Internal Components
+import API from "../../utils/API";
 import Input from "../../components/PropertyForm/Input";
 import Select from "../../components/PropertyForm/Select";
 import Button from "../../components/PropertyForm/Button";
@@ -19,9 +21,15 @@ class PropertyForm extends Component {
         beds: "",
         baths: "",
         size: "",
-        rentPrice: 0.00
+        rentPrice: 0.0
       },
-      propertyTypeOptions: ["Single Family", "Multi Family", "Condominium", "Apartment", "Comercial"]
+      propertyTypeOptions: [
+        "Single Family",
+        "Multi Family",
+        "Condominium",
+        "Apartment",
+        "Comercial"
+      ]
     };
     this.handleAddress = this.handleAddress.bind(this);
     this.handleLocation = this.handleLocation.bind(this);
@@ -30,7 +38,6 @@ class PropertyForm extends Component {
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
-
 
   handleCompany(e) {
     let value = e.target.value;
@@ -115,7 +122,7 @@ class PropertyForm extends Component {
   render() {
     return (
       <form className="container-fluid " onSubmit={this.handleFormSubmit}>
-        <h2>Add new property.</h2>
+        <h2 className="mb-4">Add new property</h2>
         <Input
           inputType={"text"}
           title={"Address"}
@@ -184,21 +191,20 @@ class PropertyForm extends Component {
           action={this.handleFormSubmit}
           type={"primary"}
           title={"Submit"}
-          style={buttonStyle}
+          style={{
+            float: "inherit",
+            margin: "20px"
+          }}
         />{" "}
         <Button
           action={this.handleClearForm}
           type={"secondary"}
-          title={"Clear"}
-          style={buttonStyle}
+          title={"Clear Form"}
+          style={{ float: "inherit" }}
         />{" "}
       </form>
     );
   }
 }
-
-const buttonStyle = {
-  margin: "10px 10px 10px 10px"
-};
 
 export default PropertyForm;

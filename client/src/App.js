@@ -40,10 +40,12 @@ function App() {
                   <Route exact path="/pricing" component={Pricing} />
                   <Route exact path="/dashboard" component={Dashboard} />
                   <Route exact path="/property" component={Property} />
-                  <Route exact path="/propertyform" component={PropertyFormWrapper} />
+                  <Route
+                    exact
+                    path="/propertyform"
+                    component={PropertyFormWrapper}
+                  />
                   <Route exact path="/listing" component={Listing} />
-                  {/* <Route exact path="/aboutus" component={ComingSoon} /> */}
-                  {/* <Route component={ComingSoon} /> */}
                   <Route component={NoMatch} />
                 </Switch>
               </div>

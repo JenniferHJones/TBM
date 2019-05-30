@@ -6,7 +6,9 @@ const Button = props => {
     <button
       style={props.style}
       className={
-        props.type === "primary" ? "btn btn-warning" : "btn btn-danger"
+        props.type === "primary"
+          ? "btn btn-warning"
+          : "btn btn-outline-secondary"
       }
       onClick={props.action}
     >
