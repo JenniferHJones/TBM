@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../context";
 import icon from "../../images/icon.png";
 import API from "../../utils/API";
+import "./nav.css";
 
 const Nav = props => {
   const [openSnackStatus, setSnackStatus] = useState(false);
@@ -85,14 +86,14 @@ const Nav = props => {
   return (
     <>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={openSnackStatus}
         autoHideDuration={2000}
         onClose={() => setSnackStatus(false)}
       >
         <MySnackbarContentWrapper
           variant="success"
-          ContentProps={{
+          contentprops={{
             "aria-describedby": "message-id"
           }}
           message={<span id="message-id">You are now logged out.</span>}
@@ -126,7 +127,7 @@ const Nav = props => {
               <>
                 <li className="nav-item">
                   <Link
-                    className="nav-link ml-5"
+                    className="nav-link nav-hover ml-5"
                     to="/"
                     style={{ color: "gold" }}
                   >
