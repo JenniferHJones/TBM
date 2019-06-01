@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-// import { Redirect } from "react-router-dom";
-// import { UserContext } from "../context";
+import React, { useContext, useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import { UserContext } from "../context";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -8,6 +8,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import API from "../utils/API";
 
@@ -38,58 +39,93 @@ const styles = withStyles(theme => ({
   }
 }));
 
-class PropertyTable extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      rows: []
-    }
-  }
+const PropertyTable = function(props) {
+  const [rows, setRows] = useState([]);
 
-  loadProperties = () => {
-    API.tableFindAll()
-      .then(res => 
-        this.setState({ rows: res.data })
-      )
+  const { state } = useContext(UserContext);
+
+  const loadProperties = () => {
+    console.log(state);
+    API.tableFindAll(state.currentUser)
+      .then(res => setRows(res.data))
       .catch(err => console.log(err));
   };
 
-  componentWillMount() {
-    this.loadProperties();
+  const toggleList = (id, action) => {
+    API.updateLeased({ id, action })
+      .then(res => {
+        loadProperties();
+      })
+      .catch(err => console.log(err));
+    // console.log(id, action);
+  };
+
+  useEffect(() => {
+    loadProperties();
+  }, []);
+  if (!state.currentUser) {
+    return <Redirect to="/" />;
   }
 
-  render() {
-    console.log(this.props)
-    return (
-      <Paper className={this.props.classes.root}> 
-        <Table className={this.props.classes.table} >
-          <TableHead>
-            <TableRow>
-              <PropertyTableCell align="center">Property Address</PropertyTableCell>
-              <PropertyTableCell align="center">Location</PropertyTableCell>
-              <PropertyTableCell align="center">Company</PropertyTableCell>
-              <PropertyTableCell align="center">Property Type</PropertyTableCell>
+  return (
+    <Paper className={props.classes.root}>
+      <Table className={props.classes.table}>
+        <TableHead>
+          <TableRow>
+            <PropertyTableCell align="center">
+              Property Address
+            </PropertyTableCell>
+            <PropertyTableCell align="center">Location</PropertyTableCell>
+            <PropertyTableCell align="center">Company</PropertyTableCell>
+            <PropertyTableCell align="center">Property Type</PropertyTableCell>
+            <PropertyTableCell align="center">Listed</PropertyTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody stripedRows>
+          {rows.map(row => (
+            <TableRow className={props.classes.row} key={row.id}>
+              <PropertyTableCell align="center">
+                {row.address}
+              </PropertyTableCell>
+              <PropertyTableCell align="center">
+                {row.location}
+              </PropertyTableCell>
+              <PropertyTableCell align="center">
+                {row.companyName}
+              </PropertyTableCell>
+              <PropertyTableCell align="center">
+                {row.propertyType}
+              </PropertyTableCell>
+              <PropertyTableCell align="center">
+                {row.leased === false ? (
+                  <Button
+                    className={props.classes.button}
+                    label="List"
+                    color="primary"
+                    onClick={() => toggleList(row.id, true)}
+                  >
+                    List
+                  </Button>
+                ) : (
+                  <Button
+                    label="Unlist"
+                    color="secondary"
+                    onClick={() => toggleList(row.id, false)}
+                  >
+                    Unlist
+                  </Button>
+                )}
+              </PropertyTableCell>
             </TableRow>
-          </TableHead>
-          <TableBody stripedRows>
-            {this.state.rows.map(row => (
-              <TableRow className={this.props.classes.row} key={row.id} >
-                <PropertyTableCell align="center">{row.address}</PropertyTableCell>
-                <PropertyTableCell align="center">{row.location}</PropertyTableCell>
-                <PropertyTableCell align="center">{row.companyName}</PropertyTableCell>
-                <PropertyTableCell align="center">{row.propertyType}</PropertyTableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    );
-  }
-}
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
+};
 
 PropertyTable.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default styles(PropertyTable);

@@ -42,7 +42,7 @@ class ListingTable extends Component {
     super(props);
     this.state = {
       rows: []
-    }
+    };
   }
 
   // loadProperties = () => {
@@ -50,7 +50,7 @@ class ListingTable extends Component {
   //   .then(res =>
   //     this.setState({ rows: res.data})
   //   )
-  //   .catch(err => console.log(err));
+  // .catch(err => console.log(err));
   // };
 
   // componentWillMount() {
@@ -59,10 +59,10 @@ class ListingTable extends Component {
 
   render() {
     return (
-      <Paper >
+      <Paper>
         {/* className={classes.root} */}
-        <Table >
-        {/* className={classes.table} */}
+        <Table>
+          {/* className={classes.table} */}
           <TableHead>
             <TableRow>
               <ListingTableCell align="center">Listed</ListingTableCell>
@@ -72,20 +72,24 @@ class ListingTable extends Component {
               <ListingTableCell align="center">Baths</ListingTableCell>
               <ListingTableCell align="center">Size</ListingTableCell>
               <ListingTableCell align="center">Monthly Rent</ListingTableCell>
-
-
             </TableRow>
           </TableHead>
           <TableBody>
             {this.state.rows.map(row => (
               <TableRow className={this.state.rows} key={row.id}>
-                <ListingTableCell align="center">{"List Date"}</ListingTableCell>
-                <ListingTableCell align="center">{"Available Date"}</ListingTableCell>
+                <ListingTableCell align="center">
+                  {"List Date"}
+                </ListingTableCell>
+                <ListingTableCell align="center">
+                  {"Available Date"}
+                </ListingTableCell>
                 <ListingTableCell align="center">{"Address"}</ListingTableCell>
                 <ListingTableCell align="center">{"Beds"}</ListingTableCell>
                 <ListingTableCell align="center">{"Baths"}</ListingTableCell>
                 <ListingTableCell align="center">{"Size"}</ListingTableCell>
-                <ListingTableCell align="center">{"Monthly Rent"}</ListingTableCell>
+                <ListingTableCell align="center">
+                  {"Monthly Rent"}
+                </ListingTableCell>
               </TableRow>
             ))}
           </TableBody>
