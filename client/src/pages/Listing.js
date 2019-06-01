@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
-import { Redirect } from "react-router-dom";
-import { UserContext } from "../context";
+import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
+// import { UserContext } from "../context";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -37,52 +37,66 @@ const styles = theme => ({
   }
 });
 
-const rows = [
-  // get data from db to display on table.
-];
-
-function ListingTable(props) {
-  const { state, dispatch } = useContext(UserContext);
-
-  if (!state.currentUser) {
-    return <Redirect to="/" />;
+class ListingTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rows: []
+    };
   }
-  const { classes } = props;
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <ListingTableCell align="center">Listed</ListingTableCell>
-            <ListingTableCell align="center">Available</ListingTableCell>
-            <ListingTableCell align="center">Address</ListingTableCell>
-            <ListingTableCell align="center">Beds</ListingTableCell>
-            <ListingTableCell align="center">Baths</ListingTableCell>
-            <ListingTableCell align="center">Size</ListingTableCell>
-            <ListingTableCell align="center">Monthly Rent</ListingTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map(row => (
-            <TableRow className={classes.row} key={row.id}>
-              <ListingTableCell align="center">{"List Date"}</ListingTableCell>
-              <ListingTableCell align="center">
-                {"Available Date"}
-              </ListingTableCell>
-              <ListingTableCell align="center">{"Address"}</ListingTableCell>
-              <ListingTableCell align="center">{"Beds"}</ListingTableCell>
-              <ListingTableCell align="center">{"Baths"}</ListingTableCell>
-              <ListingTableCell align="center">{"Size"}</ListingTableCell>
-              <ListingTableCell align="center">
-                {"Monthly Rent"}
-              </ListingTableCell>
+  // loadProperties = () => {
+  //   API.tableFindAll()
+  //   .then(res =>
+  //     this.setState({ rows: res.data})
+  //   )
+  // .catch(err => console.log(err));
+  // };
+
+  // componentWillMount() {
+  //   this.loadProperties();
+  // }
+
+  render() {
+    return (
+      <Paper>
+        {/* className={classes.root} */}
+        <Table>
+          {/* className={classes.table} */}
+          <TableHead>
+            <TableRow>
+              <ListingTableCell align="center">Listed</ListingTableCell>
+              <ListingTableCell align="center">Available</ListingTableCell>
+              <ListingTableCell align="center">Address</ListingTableCell>
+              <ListingTableCell align="center">Beds</ListingTableCell>
+              <ListingTableCell align="center">Baths</ListingTableCell>
+              <ListingTableCell align="center">Size</ListingTableCell>
+              <ListingTableCell align="center">Monthly Rent</ListingTableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+          </TableHead>
+          <TableBody>
+            {this.state.rows.map(row => (
+              <TableRow className={this.state.rows} key={row.id}>
+                <ListingTableCell align="center">
+                  {"List Date"}
+                </ListingTableCell>
+                <ListingTableCell align="center">
+                  {"Available Date"}
+                </ListingTableCell>
+                <ListingTableCell align="center">{"Address"}</ListingTableCell>
+                <ListingTableCell align="center">{"Beds"}</ListingTableCell>
+                <ListingTableCell align="center">{"Baths"}</ListingTableCell>
+                <ListingTableCell align="center">{"Size"}</ListingTableCell>
+                <ListingTableCell align="center">
+                  {"Monthly Rent"}
+                </ListingTableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
 }
 
 ListingTable.propTypes = {

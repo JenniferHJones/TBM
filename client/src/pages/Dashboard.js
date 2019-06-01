@@ -4,7 +4,7 @@ import { UserContext } from "../context";
 import Card from "../components/Cards/cards";
 
 function Dashboard(props) {
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
 
   if (!state.currentUser) {
     return <Redirect to="/" />;

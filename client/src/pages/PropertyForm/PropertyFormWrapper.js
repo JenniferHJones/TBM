@@ -4,7 +4,7 @@ import PropertyForm from "./PropertyForm";
 import { UserContext } from "../../context";
 
 const PropertyFormWrapper = props => {
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
 
   if (!state.currentUser) {
     return <Redirect to="/" />;
