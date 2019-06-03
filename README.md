@@ -16,6 +16,7 @@ The landing page provides users with the opportunity to learn about the software
 
 ## Technology
 
+- Axios
 - Bcrypt
 - CSS
 - CSS Bootstrap

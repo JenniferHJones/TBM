@@ -1,6 +1,6 @@
 // External imports
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 // Internal Components
 import API from "../../utils/API";
@@ -100,8 +100,10 @@ class PropertyForm extends Component {
     API.addProperty(data)
       .then(res => {
         this.props.update(res.data);
+        this.props.history.push("/property");
       })
       .catch(err => this.setState({ error: "Unable to add property" }));
+    // return <Redirect to="/property" />;
   }
 
   handleClearForm(e) {
@@ -128,13 +130,13 @@ class PropertyForm extends Component {
           title={"Address"}
           name={"address"}
           value={this.state.newProperty.address}
-          placeholder={"123 random st"}
+          placeholder={"123 Random St"}
           handleChange={this.handleInput}
         />{" "}
         <Input
           inputType={"text"}
           name={"location"}
-          title={"Location"}
+          title={"City, State"}
           value={this.state.newProperty.location}
           placeholder={"Davis, CA"}
           handleChange={this.handleLocation}
@@ -174,9 +176,9 @@ class PropertyForm extends Component {
         <Input
           inputType={"text"}
           name={"size"}
-          title={"Size"}
+          title={"Size (Sq Ft)"}
           value={this.state.newProperty.size}
-          placeholder={"550 sqft"}
+          placeholder={"550"}
           handleChange={this.handleInput}
         />{" "}
         <Input

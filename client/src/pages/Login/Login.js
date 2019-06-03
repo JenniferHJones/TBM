@@ -28,7 +28,7 @@ class Login extends Component {
         this.props.update(res.data);
       })
       .then(() => this.props.history.push("/Dashboard"))
-      .catch(err => console.log(err));
+      .catch(err => this.setState({ error: "error" }));
   };
 
   onChange = key => e => this.setState({ [key]: e.target.value });
@@ -37,9 +37,14 @@ class Login extends Component {
     return (
       <div className="container mt-5 mb-5">
         <h1 className="mb-5">Log In</h1>
+        {this.state.error === "error" ? (
+          <span className="form-error">{"Email or Password is incorrect"}</span>
+        ) : (
+          <></>
+        )}
         <form>
           <div className="form-group mb-5 font-weight-bold">
-            <label htmlFor="inputEmail">Email</label>
+            <label htmlFor="inputEmail">Email </label>
             <input
               type="text"
               className="form-control"
@@ -51,7 +56,7 @@ class Login extends Component {
             />
           </div>
           <div className="form-group mb-5 font-weight-bold">
-            <label htmlFor="inputPassword">Password</label>
+            <label htmlFor="inputPassword">Password </label>
             <input
               type="password"
               className="form-control"

@@ -20,12 +20,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       default: false
     },
-    // listedDate: {
-    //   type: DataTypes.Date,
-    // },
-    // availableDate: {
-    //   type: DataTypes.Date,
-    // },
     beds: {
       type: DataTypes.STRING,
       allowNull: false

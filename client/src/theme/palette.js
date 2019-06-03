@@ -4,7 +4,7 @@ export default {
   common: {
     black,
     white,
-    neutral: "#E4E7EB",
+    neutral: "#757575",
     muted: "#9EA0A4",
     yellow: "#ffc107"
   },
@@ -16,7 +16,7 @@ export default {
   },
   secondary: {
     contrastText: white,
-    main: "#7d58ff",
+    main: "#757575",
     light: "",
     dark: "#37248F"
   },
