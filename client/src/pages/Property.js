@@ -15,10 +15,11 @@ import API from "../utils/API";
 const PropertyTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    fontSize: "16pt"
   },
   body: {
-    fontSize: 14
+    fontSize: "14pt"
   }
 }))(TableCell);
 
@@ -27,6 +28,7 @@ const styles = withStyles(theme => ({
     width: "90%",
     marginLeft: theme.spacing.unit * 10,
     marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 10,
     overflowX: "auto"
   },
   table: {
@@ -81,7 +83,7 @@ const PropertyTable = function(props) {
             <PropertyTableCell align="center">Listed</PropertyTableCell>
           </TableRow>
         </TableHead>
-        <TableBody stripedRows>
+        <TableBody>
           {rows.map(row => (
             <TableRow className={props.classes.row} key={row.id}>
               <PropertyTableCell align="center">
@@ -100,19 +102,19 @@ const PropertyTable = function(props) {
                 {row.leased === false ? (
                   <Button
                     className={props.classes.button}
-                    label="List"
+                    label="Listed"
                     color="primary"
                     onClick={() => toggleList(row.id, true)}
                   >
-                    List
+                    Listed
                   </Button>
                 ) : (
                   <Button
-                    label="Unlist"
+                    label="Unlisted"
                     color="secondary"
                     onClick={() => toggleList(row.id, false)}
                   >
-                    Unlist
+                    Unlisted
                   </Button>
                 )}
               </PropertyTableCell>
