@@ -1,4 +1,4 @@
-var db = require('../models');
+var db = require("../models");
 
 // Routes to update db with new property
 // =============================================================
@@ -12,10 +12,12 @@ module.exports = {
       beds: req.body.beds,
       baths: req.body.baths,
       size: req.body.size,
-      rentPrice : req.body.rentPrice,
-      UserId : req.body.UserId
-    }).then(function(dbProperties) {
-      res.json(dbProperties);
-    });
-  },
+      rentPrice: req.body.rentPrice,
+      UserId: req.body.UserId
+    })
+      .then(function(dbProperties) {
+        res.json(dbProperties);
+      })
+      .catch(e => res.status(400).send({ msg: "error adding property", e }));
+  }
 };

@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import StarIcon from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   "@global": {
@@ -98,7 +99,6 @@ function Pricing(props) {
     <React.Fragment>
       <CssBaseline />
       <main className={classes.layout}>
-        {/* Hero unit */}
         <div className={classes.heroContent}>
           <Typography
             component="h1"
@@ -118,10 +118,8 @@ function Pricing(props) {
             Three tiers to suit your needs
           </Typography>
         </div>
-        {/* End hero unit */}
         <Grid container spacing={40} alignItems="flex-end">
           {tiers.map(tier => (
-            // Premium card is full width at sm breakpoint
             <Grid
               item
               key={tier.title}
@@ -182,7 +180,7 @@ function Pricing(props) {
                     variant={tier.buttonVariant}
                     color="primary"
                   >
-                    {tier.buttonText}
+                    <Link to="/register">{tier.buttonText}</Link>
                   </Button>
                 </CardActions>
               </Card>
