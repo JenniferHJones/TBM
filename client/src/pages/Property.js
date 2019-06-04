@@ -94,19 +94,19 @@ const PropertyTable = function(props) {
                 {row.leased === false ? (
                   <Button
                     className={props.classes.button}
-                    label="List"
+                    label="Listed"
                     color="primary"
                     onClick={() => toggleList(row.id, true)}
                   >
-                    List
+                    Listed
                   </Button>
                 ) : (
                   <Button
-                    label="Remove"
+                    label="Unlisted"
                     color="secondary"
                     onClick={() => toggleList(row.id, false)}
                   >
-                    Remove
+                    Unlisted
                   </Button>
                 )}
               </PropertyTableCell>
