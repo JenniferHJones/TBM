@@ -28,8 +28,8 @@ export default {
   },
   updateLeased: function(data) {
     return axios.put(`/api/property/${data.id}`, data);
+  },
+  listingsFindAll: function(data) {
+    return axios.post(`/api/property/listed/${data.id}`, data);
   }
-
-  // getBook: function(id) {
-  //   return axios.get("/api/books/" + id);
 };

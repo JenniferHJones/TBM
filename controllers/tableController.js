@@ -4,17 +4,18 @@ var db = require("../models");
 // =============================================================
 module.exports = {
   tableFindAll: function(req, res) {
-    console.log(req.params);
     db.Property.findAll({ where: { userId: req.params.id } }).then(function(
       dbProperty
     ) {
       res.json(dbProperty);
     });
   },
-  tableFindById: function(req, res) {
-    db.Property.findById(req.params.id)
-      .then(dbProperty => res.json(dbProperty))
-      .catch(err => res.status(422).json(err));
+  listingsFindAll: function(req, res) {
+    db.Property.findAll({
+      where: { userId: req.params.id, leased: true }
+    }).then(function(dbProperty) {
+      res.json(dbProperty);
+    });
   },
   updateLeased: function(req, res) {
     db.Property.update(

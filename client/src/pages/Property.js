@@ -99,7 +99,6 @@ const PropertyTable = function(props) {
               <PropertyTableCell align="center">
                 {row.leased === false ? (
                   <Button
-                    className={props.classes.button}
                     label="List"
                     color="primary"
                     onClick={() => toggleList(row.id, true)}
