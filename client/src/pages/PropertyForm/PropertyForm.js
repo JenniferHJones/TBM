@@ -118,7 +118,7 @@ class PropertyForm extends Component {
           title={"Address"}
           name={"address"}
           value={this.state.newProperty.address}
-          placeholder={"123 Random St"}
+          defaultValue={"123 Random St"}
           handleChange={this.handleInput}
         />{" "}
         <Input
@@ -126,7 +126,7 @@ class PropertyForm extends Component {
           name={"location"}
           title={"City, State"}
           value={this.state.newProperty.location}
-          placeholder={"Davis, CA"}
+          defaultValue={"Davis, CA"}
           handleChange={this.handleLocation}
         />{" "}
         <Input
@@ -134,7 +134,7 @@ class PropertyForm extends Component {
           name={"company"}
           title={"Company Name"}
           value={this.state.newProperty.company}
-          placeholder={"Tower Bridge"}
+          defaultValue={"Tower Bridge"}
           handleChange={this.handleCompany}
         />{" "}
         <Select
@@ -142,7 +142,7 @@ class PropertyForm extends Component {
           name={"propertyType"}
           options={this.state.propertyTypeOptions}
           value={this.state.newProperty.propertyType}
-          placeholder={"Select Property Type"}
+          defaultValue={"Select Property Type"}
           handleChange={this.handleInput}
         />{" "}
         <Input
@@ -150,7 +150,7 @@ class PropertyForm extends Component {
           name={"beds"}
           title={"Beds"}
           value={this.state.newProperty.beds}
-          placeholder={"3"}
+          defaultValue={"3"}
           handleChange={this.handleInput}
         />{" "}
         <Input
@@ -158,7 +158,7 @@ class PropertyForm extends Component {
           name={"baths"}
           title={"Baths"}
           value={this.state.newProperty.baths}
-          placeholder={"2"}
+          defaultValue={"2"}
           handleChange={this.handleInput}
         />{" "}
         <Input
@@ -166,7 +166,7 @@ class PropertyForm extends Component {
           name={"size"}
           title={"Size (Sq Ft)"}
           value={this.state.newProperty.size}
-          placeholder={"550"}
+          defaultValue={"550"}
           handleChange={this.handleInput}
         />{" "}
         <Input
@@ -174,7 +174,7 @@ class PropertyForm extends Component {
           name={"rentPrice"}
           title={"Monthly Rent"}
           value={this.state.newProperty.rentPrice}
-          placeholder={"1200.00"}
+          defaultValue={"1200.00"}
           handleChange={this.handleInput}
         />{" "}
         <Button
