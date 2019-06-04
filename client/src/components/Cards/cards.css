@@ -6,9 +6,9 @@ body {
   box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
 }
 
-.card-body {
+/* .card-body {
   padding: 3rem 0 !important;
-}
+} */
 
 .card-text {
   font-size: 0.9rem;

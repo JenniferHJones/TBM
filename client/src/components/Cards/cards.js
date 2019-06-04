@@ -13,7 +13,7 @@ class Cards extends Component {
             <Card title="Expiring Leases" />
           </div>
           <div className="col-md-4">
-            <Card title="Search Future Properties" />
+            <Card title="Calendar" />
           </div>
         </div>
       </div>
