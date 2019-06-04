@@ -1,6 +1,5 @@
 // External imports
 import React, { Component } from "react";
-// import { Redirect } from "react-router-dom";
 
 // Internal Components
 import API from "../../utils/API";
@@ -34,49 +33,40 @@ class PropertyForm extends Component {
     this.handleAddress = this.handleAddress.bind(this);
     this.handleLocation = this.handleLocation.bind(this);
     this.handleCompany = this.handleCompany.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    // this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
   handleCompany(e) {
     let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newProperty: {
-          ...prevState.newProperty,
-          companyName: value
-        }
-      }),
-      () => console.log(this.state.newProperty)
-    );
+    this.setState(prevState => ({
+      newProperty: {
+        ...prevState.newProperty,
+        companyName: value
+      }
+    }));
   }
 
   handleLocation(e) {
     let value = e.target.value;
-    this.setState(
-      prevState => ({
-        newProperty: {
-          ...prevState.newProperty,
-          location: value
-        }
-      }),
-      () => console.log(this.state.newProperty)
-    );
+    this.setState(prevState => ({
+      newProperty: {
+        ...prevState.newProperty,
+        location: value
+      }
+    }));
   }
 
   handleInput(e) {
     let value = e.target.value;
     let name = e.target.name;
-    this.setState(
-      prevState => ({
-        newProperty: {
-          ...prevState.newProperty,
-          [name]: value
-        }
-      }),
-      () => console.log(this.state.newProperty)
-    );
+    this.setState(prevState => ({
+      newProperty: {
+        ...prevState.newProperty,
+        [name]: value
+      }
+    }));
   }
 
   handleAddress(e) {
@@ -92,19 +82,17 @@ class PropertyForm extends Component {
     );
   }
 
-  handleFormSubmit(e) {
+  handleFormSubmit = e => {
     e.preventDefault();
     let data = this.state.newProperty;
     data.UserId = this.props.user.currentUser.id;
-    console.log(data);
+
     API.addProperty(data)
       .then(res => {
-        this.props.update(res.data);
         this.props.history.push("/property");
       })
       .catch(err => this.setState({ error: "Unable to add property" }));
-    // return <Redirect to="/property" />;
-  }
+  };
 
   handleClearForm(e) {
     e.preventDefault();
@@ -190,7 +178,7 @@ class PropertyForm extends Component {
           handleChange={this.handleInput}
         />{" "}
         <Button
-          action={this.handleFormSubmit}
+          // action={this.handleFormSubmit}
           type={"primary"}
           title={"Submit"}
           style={{

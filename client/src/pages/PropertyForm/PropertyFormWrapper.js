@@ -10,7 +10,7 @@ const PropertyFormWrapper = props => {
     return <Redirect to="/" />;
   }
 
-  return <PropertyForm user={state} />;
+  return <PropertyForm user={state} history={props.history} />;
 };
 
 export default PropertyFormWrapper;
