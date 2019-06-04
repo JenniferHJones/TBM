@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Chart from "./chart";
 
 import "./cards.css";
 
@@ -9,7 +10,11 @@ const Card = props => {
       <div className="card-body text-dark">
         <h2 className="card-title">{props.title}</h2>
         <p className="card-text text-secondary">
-          Dislay data chart and or search field here!
+          {props.title === "Rental Listings" ? (
+            <Chart title={props.title} />
+          ) : (
+            <p>Something Else</p>
+          )}
         </p>
         <Link to="/Property">
           <button className="btn btn-outline-warning">View All</button>

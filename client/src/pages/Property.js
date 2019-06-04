@@ -11,7 +11,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import API from "../utils/API";
-
 const PropertyTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -22,7 +21,6 @@ const PropertyTableCell = withStyles(theme => ({
     fontSize: "14pt"
   }
 }))(TableCell);
-
 const styles = withStyles(theme => ({
   root: {
     width: "90%",
@@ -40,19 +38,15 @@ const styles = withStyles(theme => ({
     }
   }
 }));
-
 const PropertyTable = function(props) {
   const [rows, setRows] = useState([]);
-
   const { state } = useContext(UserContext);
-
   const loadProperties = () => {
     console.log(state);
     API.tableFindAll(state.currentUser)
       .then(res => setRows(res.data))
       .catch(err => console.log(err));
   };
-
   const toggleList = (id, action) => {
     API.updateLeased({ id, action })
       .then(res => {
@@ -61,14 +55,12 @@ const PropertyTable = function(props) {
       .catch(err => console.log(err));
     // console.log(id, action);
   };
-
   useEffect(() => {
     loadProperties();
   }, []);
   if (!state.currentUser) {
     return <Redirect to="/" />;
   }
-
   return (
     <Paper className={props.classes.root}>
       <Table className={props.classes.table}>
@@ -125,9 +117,7 @@ const PropertyTable = function(props) {
     </Paper>
   );
 };
-
 PropertyTable.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
 export default styles(PropertyTable);
