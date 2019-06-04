@@ -28,7 +28,7 @@ function App() {
       <Router>
         <div className="App Site">
           <UserProvider>
-            <div className="Site-content">
+            <div className="Site-content mb-5">
               <div className="App-header">
                 <Route component={Nav} />
               </div>
