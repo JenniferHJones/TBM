@@ -17,10 +17,11 @@ import Moment from "react-moment";
 const ListingTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    fontSize: "14pt"
   },
   body: {
-    fontSize: 14
+    fontSize: "12pt"
   }
 }))(TableCell);
 
