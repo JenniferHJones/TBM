@@ -11,22 +11,22 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import API from "../utils/API";
-
 const PropertyTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    fontSize: "16pt"
   },
   body: {
-    fontSize: 14
+    fontSize: "14pt"
   }
 }))(TableCell);
-
 const styles = withStyles(theme => ({
   root: {
     width: "90%",
     marginLeft: theme.spacing.unit * 10,
     marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 10,
     overflowX: "auto"
   },
   table: {
@@ -38,19 +38,15 @@ const styles = withStyles(theme => ({
     }
   }
 }));
-
 const PropertyTable = function(props) {
   const [rows, setRows] = useState([]);
-
   const { state } = useContext(UserContext);
-
   const loadProperties = () => {
     console.log(state);
     API.tableFindAll(state.currentUser)
       .then(res => setRows(res.data))
       .catch(err => console.log(err));
   };
-
   const toggleList = (id, action) => {
     API.updateLeased({ id, action })
       .then(res => {
@@ -59,14 +55,12 @@ const PropertyTable = function(props) {
       .catch(err => console.log(err));
     // console.log(id, action);
   };
-
   useEffect(() => {
     loadProperties();
   }, []);
   if (!state.currentUser) {
     return <Redirect to="/" />;
   }
-
   return (
     <Paper className={props.classes.root}>
       <Table className={props.classes.table}>
@@ -81,7 +75,7 @@ const PropertyTable = function(props) {
             <PropertyTableCell align="center">Listed</PropertyTableCell>
           </TableRow>
         </TableHead>
-        <TableBody stripedRows>
+        <TableBody>
           {rows.map(row => (
             <TableRow className={props.classes.row} key={row.id}>
               <PropertyTableCell align="center">
@@ -99,6 +93,7 @@ const PropertyTable = function(props) {
               <PropertyTableCell align="center">
                 {row.leased === false ? (
                   <Button
+                    className={props.classes.button}
                     label="List"
                     color="primary"
                     onClick={() => toggleList(row.id, true)}
@@ -107,11 +102,11 @@ const PropertyTable = function(props) {
                   </Button>
                 ) : (
                   <Button
-                    label="Unlist"
+                    label="Remove"
                     color="secondary"
                     onClick={() => toggleList(row.id, false)}
                   >
-                    Unlist
+                    Remove
                   </Button>
                 )}
               </PropertyTableCell>
@@ -122,9 +117,7 @@ const PropertyTable = function(props) {
     </Paper>
   );
 };
-
 PropertyTable.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
 export default styles(PropertyTable);
