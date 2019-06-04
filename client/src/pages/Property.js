@@ -11,14 +11,15 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import API from "../utils/API";
+import { primary } from "../colors";
 const PropertyTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
-    fontSize: "16pt"
+    fontSize: "14pt"
   },
   body: {
-    fontSize: "14pt"
+    fontSize: "12pt"
   }
 }))(TableCell);
 const styles = withStyles(theme => ({
@@ -94,19 +95,19 @@ const PropertyTable = function(props) {
                 {row.leased === false ? (
                   <Button
                     className={props.classes.button}
-                    label="Listed"
+                    label="List"
                     color="primary"
                     onClick={() => toggleList(row.id, true)}
                   >
-                    Listed
+                    List
                   </Button>
                 ) : (
                   <Button
-                    label="Unlisted"
+                    label="Remove"
                     color="secondary"
                     onClick={() => toggleList(row.id, false)}
                   >
-                    Unlisted
+                    Remove
                   </Button>
                 )}
               </PropertyTableCell>
