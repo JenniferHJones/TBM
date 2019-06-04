@@ -1,0 +1,8 @@
+.MainContent {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+.calendar {
+  text-align: center;
+}

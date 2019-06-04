@@ -20,7 +20,7 @@ class Donutchart extends Component {
           options={this.state.options}
           series={this.state.options.series}
           type="donut"
-          width="380"
+          width="400"
         />
       </div>
     );

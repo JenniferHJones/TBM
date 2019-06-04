@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Chart from "./chart";
 
 import "./cards.css";
+import Calendar from "./calendar";
 
 const Card = props => {
   return (
@@ -13,12 +14,17 @@ const Card = props => {
           {props.title === "Rental Listings" ? (
             <Chart title={props.title} />
           ) : (
-            <p>Something Else</p>
+            <></>
           )}
+          {props.title === "Calendar" ? <Calendar /> : <></>}
         </p>
-        <Link to="/Property">
-          <button className="btn btn-outline-warning">View All</button>
-        </Link>
+        {props.title !== "Calendar" ? (
+          <Link to="/Property">
+            <button className="btn btn-outline-warning">View All</button>
+          </Link>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
