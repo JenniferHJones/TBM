@@ -1,4 +1,4 @@
--- use tbm_db;
+use tbm_db;
 USE jjkl6t3nsdxmo79c;
 
 INSERT INTO properties

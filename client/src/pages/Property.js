@@ -11,7 +11,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import API from "../utils/API";
-import { primary } from "../colors";
+// import { primary } from "../colors";
 const PropertyTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,

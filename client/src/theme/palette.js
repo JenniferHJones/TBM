@@ -1,4 +1,4 @@
-import { white, black } from "../colors/index";
+import { white, black } from "./colors";
 
 export default {
   common: {
