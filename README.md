@@ -1,6 +1,6 @@
 # Project 3: TBM (Tower Bridge Management)
 
-[Presentation link](https://docs.google.com/presentation/d/1PG7spOOYYOieRSUBN8rZRoCd3GZ1ADEuJc6U4SrMrm0/edit?usp=sharing" target="\_blank)
+[Presentation link](https://docs.google.com/presentation/d/1PG7spOOYYOieRSUBN8rZRoCd3GZ1ADEuJc6U4SrMrm0/edit?usp=sharing)
 
 [TBM application link](https://polar-springs-68613.herokuapp.com/)
 
