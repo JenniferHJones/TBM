@@ -52,46 +52,46 @@ Users may also do the following via the navbar:
 
 ### Home Page - Navbar
 
-![TBM App Homepage Screenshot](./client/src/images/Home1Sm.png)
+![TBM App Homepage Screenshot](./client/src/images/Home1Sm.PNG)
 
 ---
 
 ### Home Page - Overview & Footer
 
-![TBM App Homepage Screenshot](./client/src/images/Home2Sm.png)
+![TBM App Homepage Screenshot](./client/src/images/Home2Sm.PNG)
 
 ---
 
 ### Pricing Page
 
-![TBM App Pricing Screenshot](./client/src/images/PricingSm.png)
+![TBM App Pricing Screenshot](./client/src/images/PricingSm.PNG)
 
 ---
 
 ### Registration Form
 
-![TBM App Register Screenshot](./client/src/images/RegisterSm.png)
+![TBM App Register Screenshot](./client/src/images/RegisterSm.PNG)
 
 ---
 
 ### Dashboard Page
 
-![TBM App Dashboard Screenshot](./client/src/images/DashboardSm.png)
+![TBM App Dashboard Screenshot](./client/src/images/DashboardSm.PNG)
 
 ---
 
 ### Add New Property Form
 
-![TBM App Add New Property Form Screenshot](./client/src/images/AddPropertySm.png)
+![TBM App Add New Property Form Screenshot](./client/src/images/AddPropertySm.PNG)
 
 ---
 
 ### Properties Page
 
-![TBM App Properties Screenshot](./client/src/images/PropertiesSm.png)
+![TBM App Properties Screenshot](./client/src/images/PropertiesSm.PNG)
 
 ---
 
 ### Listings Page
 
-![TBM App Listings Screenshot](./client/src/images/ListingsSm.png)
+![TBM App Listings Screenshot](./client/src/images/ListingsSm.PNG)
