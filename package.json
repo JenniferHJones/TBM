@@ -30,6 +30,6 @@
     "mysql2": "^1.6.4",
     "npm": "^6.9.0",
     "react-moment": "^0.9.2",
-    "sequelize": "^5.8.7"
+    "sequelize": "^5.15.1"
   }
 }
